@@ -28,10 +28,10 @@ def log_nginx_stats(mongo_collection):
                         for key, count in Counter(IPs_list).items()]
     IPs_list_counted_sorted = sorted(
         IPs_list_counted, key=lambda ip: ip['count'], reverse=True)
-
-    for ip in IPs_list_counted_sorted[0:10]:
-        count = mongo_collection.count_documents({"ip": ip['ip']})
-        print(f"\t{ip['ip']}: {count}")
+    if IPs_list_counted_sorted:
+        for ip in IPs_list_counted_sorted[0:10]:
+            count = mongo_collection.count_documents({"ip": ip['ip']})
+            print(f"\t{ip['ip']}: {count}")
 
 
 if __name__ == "__main__":
