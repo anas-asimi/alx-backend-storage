@@ -41,7 +41,7 @@ class Cache:
             _type_: _description_
         """
         binary_value = self._redis.get(key)
-        if binary_value == None:
+        if binary_value is None:
             return None
         if fn:
             return fn(binary_value)
@@ -56,7 +56,7 @@ class Cache:
             _type_: _description_
         """
         binary_value = self._redis.get(key)
-        if binary_value == None:
+        if binary_value is None:
             return None
         return str(binary_value)
 
@@ -69,6 +69,6 @@ class Cache:
             _type_: _description_
         """
         binary_value = self._redis.get(key)
-        if binary_value == None:
+        if binary_value is None:
             return None
         return int(binary_value)
