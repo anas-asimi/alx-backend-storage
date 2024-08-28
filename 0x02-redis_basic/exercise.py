@@ -33,7 +33,7 @@ class Cache:
         __init__
         """
         self._redis = redis.Redis()
-        self._redis.flushdb()
+        self._redis.flushdb(True)
 
     @count_calls
     def store(self, data: Union[str, int, float, bytes]):
