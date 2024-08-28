@@ -35,5 +35,6 @@ def log_nginx_stats(mongo_collection):
 
 
 if __name__ == "__main__":
-    mongo_collection = MongoClient('mongodb://127.0.0.1:27017').logs.nginx
+    mongo_collection = MongoClient(
+        'mongodb://5127d0ae343f.86d9f7e6.alx-cod.online:27017').logs.nginx
     log_nginx_stats(mongo_collection)
