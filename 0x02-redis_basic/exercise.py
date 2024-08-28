@@ -42,6 +42,8 @@ class Cache:
         Args:
             data (Union[str, int, float, bytes]): _description_
         """
+        if type(data) not in [str, int, float, bytes]:
+            return None
         key = str(uuid.uuid4())
         self._redis.set(key, data)
         return key
