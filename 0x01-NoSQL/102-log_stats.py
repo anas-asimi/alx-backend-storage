@@ -8,7 +8,7 @@ from pymongo import MongoClient
 from collections import Counter
 
 
-def log_nginx_stats(mongo_collection):
+def print_nginx_request_logs(mongo_collection):
     """provides some stats about Nginx logs"""
     print(f"{mongo_collection.estimated_document_count()} logs")
 
@@ -34,7 +34,12 @@ def log_nginx_stats(mongo_collection):
             print(f"\t{ip['ip']}: {count}")
 
 
-if __name__ == "__main__":
-    mongo_collection = MongoClient(
-        'mongodb://5127d0ae343f.86d9f7e6.alx-cod.online:27017').logs.nginx
-    log_nginx_stats(mongo_collection)
+def run():
+    '''Provides some stats about Nginx logs stored in MongoDB.
+    '''
+    client = MongoClient('mongodb://127.0.0.1:27017')
+    print_nginx_request_logs(client.logs.nginx)
+
+
+if __name__ == '__main__':
+    run()
