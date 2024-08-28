@@ -28,7 +28,7 @@ class Cache:
     Cache
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         __init__
         """
@@ -36,7 +36,7 @@ class Cache:
         self._redis.flushdb(True)
 
     @count_calls
-    def store(self, data: Union[str, int, float, bytes]):
+    def store(self, data: Union[str, int, float, bytes]) -> str:
         """
         store
         Args:
@@ -48,7 +48,7 @@ class Cache:
         self._redis.set(key, data)
         return key
 
-    def get(self, key: str, fn=None):
+    def get(self, key: str, fn=None) -> Union[str, bytes, int, float]:
         """
         get
         Args:
@@ -64,7 +64,7 @@ class Cache:
             return fn(binary_value)
         return binary_value
 
-    def get_str(self, key: str):
+    def get_str(self, key: str) -> str:
         """
         get_str
         Args:
@@ -77,7 +77,7 @@ class Cache:
             return None
         return str(binary_value)
 
-    def get_int(self, key: str):
+    def get_int(self, key: str) -> int:
         """
         get_int
         Args:
