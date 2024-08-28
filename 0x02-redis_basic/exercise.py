@@ -30,3 +30,45 @@ class Cache:
             self._redis.set(key, data)
             return key
         return None
+
+    def get(self, key: str, fn):
+        """
+        get
+        Args:
+            key (str): _description_
+            fn (function): _description_
+        Returns:
+            _type_: _description_
+        """
+        binary_value = self._redis.get(key)
+        if binary_value == None:
+            return None
+        if fn:
+            return fn(binary_value)
+        return binary_value
+
+    def get_str(self, key: str):
+        """
+        get_str
+        Args:
+            key (str): _description_
+        Returns:
+            _type_: _description_
+        """
+        binary_value = self._redis.get(key)
+        if binary_value == None:
+            return None
+        return str(binary_value)
+
+    def get_int(self, key: str):
+        """
+        get_int
+        Args:
+            key (str): _description_
+        Returns:
+            _type_: _description_
+        """
+        binary_value = self._redis.get(key)
+        if binary_value == None:
+            return None
+        return int(binary_value)
