@@ -36,7 +36,7 @@ class Cache:
         self._redis.flushdb(True)
 
     @count_calls
-    def store(self, data: Union[str, int, float, bytes]) -> str:
+    def store(self, data: Union[str, bytes, int, float]) -> str:
         """
         store
         Args:
