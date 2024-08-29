@@ -121,6 +121,7 @@ def replay(method: Callable) -> None:
     Args:
         method (_type_): _description_
     """
+    # ["zip(", ".lrange("]
     self = method.__self__
     method_name = method.__qualname__
     count = self.get_int(method_name)
