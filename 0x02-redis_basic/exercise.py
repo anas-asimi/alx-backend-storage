@@ -113,3 +113,24 @@ class Cache:
         if binary_value is None:
             return None
         return int(binary_value)
+
+
+def replay(method: Callable) -> None:
+    """
+    _summary_
+    Args:
+        method (_type_): _description_
+    """
+    self = method.__self__
+    method_name = method.__qualname__
+    count = self.get_int(method_name)
+    input_list_key = method_name + ':inputs'
+    input_list = self._redis.lrange(input_list_key, 0, -1)
+    output_list_key = method_name + ':outputs'
+    output_list = self._redis.lrange(output_list_key, 0, -1)
+    print(f'{method_name} was called {count} times:')
+    for i in range(0, len(input_list)):
+        inputs = str(input_list[i], 'utf-8')
+        outputs = str(output_list[i], 'utf-8')
+        print(
+            f"{method_name}(*{inputs}) -> {outputs}")
